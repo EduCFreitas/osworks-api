@@ -40,11 +40,9 @@ public class ClienteController {
 	@GetMapping("/{clienteId}")
 	public ResponseEntity<Cliente> buscar(@PathVariable Long clienteId) {
 		Optional<Cliente> cliente = clienteRepository.findById(clienteId);
-		
 		if(cliente.isPresent()) {
 			return ResponseEntity.ok(cliente.get());
 		}
-		
 		return ResponseEntity.notFound().build();
 	}
 	
@@ -59,7 +57,6 @@ public class ClienteController {
 		if(!clienteRepository.existsById(clienteId)) {
 			return ResponseEntity.notFound().build();
 		}
-		
 		cliente.setId(clienteId);
 		cliente = cadastroCliente.salvar(cliente);
 		return ResponseEntity.ok(cliente);
@@ -70,7 +67,6 @@ public class ClienteController {
 		if(!clienteRepository.existsById(clienteId)) {
 			return ResponseEntity.notFound().build();
 		}
-		
 		cadastroCliente.excluir(clienteId);
 		return ResponseEntity.noContent().build();
 	}
